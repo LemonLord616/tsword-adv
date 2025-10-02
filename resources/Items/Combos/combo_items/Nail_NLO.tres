@@ -5,5 +5,7 @@
 
 [resource]
 script = ExtResource("1_q3brg")
-effect_script = ExtResource("1_j2sjy")
+name = "b"
+is_combo = true
+effect = ExtResource("1_j2sjy")
 metadata/_custom_type_script = "uid://b3hrdl4uub34p"
