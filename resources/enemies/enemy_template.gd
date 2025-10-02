@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name EnemyTemplate
 
 @export var is_flying_mob := false
+@export var flippable := true
 # Enemy properties
 @export var speed: float = 150.0
 @export var acceleration := 5.0
@@ -39,7 +40,7 @@ func _ready():
 func _physics_process(delta: float):
 	if stun_timer > 0:
 		stun_timer -= delta
-	if stun_timer <= 0:
+	if stun_timer <= 0 and flippable:
 		handle_flip(delta)
 	if not is_flying_mob:
 		apply_gravity(delta)

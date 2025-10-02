@@ -57,6 +57,9 @@ attack_knockback_scale = 4
 [node name="CollisionShape2D" parent="EnemyTemplate" index="0"]
 shape = SubResource("CapsuleShape2D_3im2p")
 
+[node name="Hitbox" parent="EnemyTemplate" index="1"]
+scale = Vector2(1.4287962, 1.6000006)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.04, 0.04)
 sprite_frames = SubResource("SpriteFrames_sq8fk")
