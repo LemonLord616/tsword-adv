@@ -48,6 +48,8 @@ func _get_selected_index(checkboxes: Array[CheckBox]) -> int:
 			return i
 	return -1
 
+signal items_chosen
+
 func _assign_items(idx1: int, idx2: int):
 	# Assign chosen items
 	var chosen_item1 = group1_items[idx1]
@@ -65,3 +67,5 @@ func _assign_items(idx1: int, idx2: int):
 
 	print("Player1 got:", chosen_item1.name, "and", other_item2.name)
 	print("Player2 got:", chosen_item2.name, "and", other_item1.name)
+	
+	emit_signal("items_chosen")
