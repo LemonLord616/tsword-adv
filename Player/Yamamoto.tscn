@@ -82,8 +82,12 @@ sprite_frames = SubResource("SpriteFrames_x8s40")
 animation = &"Midair"
 
 [node name="Player" parent="." instance=ExtResource("10_ik0yd")]
+player_prefix = "p1"
+move_speed = 200.0
+jump_height = 500.0
 
 [node name="Sprite2D" parent="Player" index="1"]
 visible = false
 
 [editable path="Player"]
+[editable path="Player/UI/Health"]

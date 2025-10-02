@@ -10,6 +10,8 @@ func _ready() -> void:
 	pickup_item(it)
 	pickup_item(ti)
 
+@export var player_prefix: String = "p1s" 
+
 # ----------------------------
 # Combat Settings
 # ----------------------------
@@ -80,7 +82,8 @@ func _physics_process(delta: float) -> void:
 # Input handling
 # ----------------------------
 func handle_input(delta: float) -> void:
-	horizontal_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	horizontal_input = Input.get_action_strength("%s_right" % player_prefix) \
+		- Input.get_action_strength("%s_left" % player_prefix)
 
 # ----------------------------
 # Horizontal movement with friction
@@ -100,16 +103,17 @@ func handle_horizontal(delta: float) -> void:
 # Jump handling
 # ----------------------------
 func handle_jump(delta: float) -> void:
+	var accept = "%s_accept" % player_prefix
 	if is_on_floor():
 		jump_hold_timer = 0.0
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed(accept):
 			velocity.y = -jump_velocity
 			jump_hold_timer = max_jump_hold
 	else:
 		# Variable jump height
-		if Input.is_action_pressed("ui_accept") and jump_hold_timer > 0:
+		if Input.is_action_pressed(accept) and jump_hold_timer > 0:
 			jump_hold_timer -= delta
-		elif Input.is_action_just_released("ui_accept") and velocity.y < 0:
+		elif Input.is_action_just_released(accept) and velocity.y < 0:
 			velocity.y /= jump_cut_multiplier
 
 # ----------------------------
@@ -162,9 +166,9 @@ func handle_attack(delta: float) -> void:
 	if attack_direction != AttackDir.NONE :
 		attack_direction = AttackDir.NONE
 
-	if attack_timer <= 0 and Input.is_action_just_pressed("attack"):
+	if attack_timer <= 0 and Input.is_action_just_pressed("%s_attack" % player_prefix):
 		# Determine direction
-		if Input.is_action_pressed("ui_up"):
+		if Input.is_action_pressed("%s_up" % player_prefix):
 			attack_direction = AttackDir.UP
 		else:
 			# Default to facing direction
