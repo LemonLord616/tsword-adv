@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqeqis4qqoeeg"]
+
+[ext_resource type="Script" uid="uid://bes7g0aakaw1s" path="res://resources/trash/Player (2).gd" id="1_53s6u"]
+[ext_resource type="Resource" uid="uid://7knix2w03kl4" path="res://resources/Items/Combos/combo_items/Yrav_ZAN.tres" id="2_s1rgi"]
+[ext_resource type="Resource" uid="uid://c0jgki82m2v2x" path="res://resources/Items/Combos/combo_items/El_heart.tres" id="3_j23h2"]
+[ext_resource type="PackedScene" uid="uid://6pandr8ui1st" path="res://resources/Player/InventoryMenu.tscn" id="4_ddoul"]
+[ext_resource type="Texture2D" uid="uid://cgtg43yuh8lt7" path="res://assets/sprites/particles/boom.png" id="6_6ysni"]
+[ext_resource type="PackedScene" uid="uid://ofgshyjrkmw4" path="res://resources/Player/Health.tscn" id="8_s1rgi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tok1r"]
+radius = 8.333333
+height = 31.333334
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_53s6u")
+it = ExtResource("2_s1rgi")
+ti = ExtResource("3_j23h2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_tok1r")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Health" parent="UI" instance=ExtResource("8_s1rgi")]
+
+[node name="HBoxContainer" parent="UI/Health" index="0" node_paths=PackedStringArray("player")]
+player = NodePath("../../..")
+
+[node name="InventoryMenu" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("4_ddoul")]
+visible = false
+player = NodePath("../..")
+
+[node name="Death" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.070826665, 0.07587721)
+texture = ExtResource("6_6ysni")
+
+[connection signal="bar_empty_tick" from="UI/Health/TextureProgressBar" to="." method="_on_texture_progress_bar_bar_empty_tick"]
+
+[editable path="UI/Health"]

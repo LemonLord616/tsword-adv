@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bf203u1uxf4yg"]
+
+[ext_resource type="Script" uid="uid://c54fpvrwwxcsv" path="res://resources/Misc/BulletProjectile.gd" id="1_8l518"]
+[ext_resource type="Texture2D" uid="uid://rmxovuf40uu4" path="res://assets/sprites/particles/sting.png" id="2_8l518"]
+[ext_resource type="Script" uid="uid://bxenhpdgp33p8" path="res://resources/Misc/BeeBulletHitbox.gd" id="3_8l518"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l518"]
+size = Vector2(6, 3)
+
+[node name="BeeBullet" type="Node2D"]
+script = ExtResource("1_8l518")
+lifetime = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.61086524
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("2_8l518")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("3_8l518")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_8l518")

@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmqbgqbc3v7cy"]
+
+[ext_resource type="Script" uid="uid://dg85wi5b4qugc" path="res://resources/UI/HealthUI.gd" id="1_h31i7"]
+
+[node name="HealthUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h31i7")
+
+[node name="HealthBarLeft" type="HBoxContainer" parent="."]
+layout_direction = 2
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBarRight" type="HBoxContainer" parent="."]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+alignment = 2

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://o2bkb7dqtrfg"]
+
+[ext_resource type="Script" uid="uid://c23eqs63uoxer" path="res://resources/trash/old_misc/death.gd" id="1_fak3n"]
+[ext_resource type="Texture2D" uid="uid://cgtg43yuh8lt7" path="res://assets/sprites/particles/boom.png" id="2_act6v"]
+
+[node name="Death" type="Node2D"]
+script = ExtResource("1_fak3n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("2_act6v")

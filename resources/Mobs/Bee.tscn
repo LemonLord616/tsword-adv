@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvsingnhtgosp"]
+
+[ext_resource type="Script" uid="uid://dhcwtow03wv2f" path="res://resources/Mobs/BeeAI.gd" id="1_xj7py"]
+[ext_resource type="Texture2D" uid="uid://cmcslqxa1i6i1" path="res://assets/sprites/enemies/bee_attak.png" id="1_ylqk2"]
+[ext_resource type="Texture2D" uid="uid://cxynf738ghcpq" path="res://assets/sprites/enemies/bee1.png" id="2_xj7py"]
+[ext_resource type="Texture2D" uid="uid://citfxgxwocmgd" path="res://assets/sprites/enemies/bee2.png" id="3_nd6j3"]
+[ext_resource type="Script" uid="uid://r40lksnkn6fu" path="res://resources/Creatures/CreatureAnimatedSprite.gd" id="5_ylqk2"]
+[ext_resource type="PackedScene" uid="uid://cscjkdmdd3lvb" path="res://resources/Creatures/AirEnemy.tscn" id="6_xj7py"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_je0wu"]
+resource_local_to_scene = true
+size = Vector2(26, 26)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ylqk2"]
+resource_local_to_scene = true
+radius = 9.0
+height = 25.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lemfo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ylqk2")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xj7py")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nd6j3")
+}],
+"loop": true,
+"name": &"Float",
+"speed": 5.0
+}]
+
+[node name="Bee" type="Node2D"]
+script = ExtResource("1_xj7py")
+
+[node name="AirEnemy" parent="." instance=ExtResource("6_xj7py")]
+speed = 150.0
+knockback_resist = 0.3
+bouncy = true
+
+[node name="CollisionShape2D" parent="AirEnemy/EnemyHitbox" index="0"]
+shape = SubResource("RectangleShape2D_je0wu")
+
+[node name="CollisionShape2D" parent="AirEnemy" index="1"]
+shape = SubResource("CapsuleShape2D_ylqk2")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="AirEnemy"]
+navigation_layers = 4
+avoidance_layers = 4
+avoidance_mask = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("creature")]
+scale = Vector2(0.04, 0.04)
+sprite_frames = SubResource("SpriteFrames_lemfo")
+animation = &"Float"
+frame = 1
+frame_progress = 0.3212487
+script = ExtResource("5_ylqk2")
+creature = NodePath("../AirEnemy")
+
+[node name="AimRayCast" type="RayCast2D" parent="."]
+collision_mask = 5
+
+[node name="Target" type="Marker2D" parent="."]
+
+[editable path="AirEnemy"]
+[editable path="AirEnemy/EnemyHitbox"]

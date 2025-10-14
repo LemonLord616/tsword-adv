@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsuleliwkdtg0"]
+
+[ext_resource type="Script" uid="uid://di2nexslpfiqu" path="res://resources/Rooms/RoomTemplates/CameraBounds.gd" id="1_mrt38"]
+[ext_resource type="Script" uid="uid://0go1bq6l5r7s" path="res://resources/Rooms/RoomTemplates/Door.gd" id="2_c2mv8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ya37f"]
+resource_local_to_scene = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmtbo"]
+resource_local_to_scene = true
+
+[node name="Room" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(0.086, 0.086)
+
+[node name="CameraBounds" type="Area2D" parent="."]
+script = ExtResource("1_mrt38")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds"]
+shape = SubResource("RectangleShape2D_ya37f")
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Exit" type="Area2D" parent="Doors"]
+collision_layer = 0
+script = ExtResource("2_c2mv8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/Exit"]
+shape = SubResource("RectangleShape2D_pmtbo")
+
+[node name="Enterance" type="Area2D" parent="Doors"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/Enterance"]
+shape = SubResource("RectangleShape2D_pmtbo")
+
+[connection signal="body_entered" from="CameraBounds" to="CameraBounds" method="_on_body_entered"]
+[connection signal="body_entered" from="Doors/Exit" to="Doors/Exit" method="_on_body_entered"]

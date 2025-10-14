@@ -1,0 +1,246 @@
+[gd_scene load_steps=25 format=4 uid="uid://dpkyfww3i4s8r"]
+
+[ext_resource type="PackedScene" uid="uid://csth08ghbtj1h" path="res://resources/trash/rooms/big_room.tscn" id="1_2k1ph"]
+[ext_resource type="Texture2D" uid="uid://dr0r3n8aus0yr" path="res://assets/sprites/background/photo_2025-09-30_20-35-15.jpg" id="2_kdwvv"]
+[ext_resource type="PackedScene" uid="uid://4flu6k4xyueq" path="res://resources/Mobs/Goblin.tscn" id="3_lo6tm"]
+[ext_resource type="PackedScene" uid="uid://3nvusk378v7a" path="res://resources/Characters/Yamamoto.tscn" id="3_y8s83"]
+[ext_resource type="PackedScene" uid="uid://d34t47s5fmr67" path="res://resources/UI/Interface.tscn" id="5_xig5u"]
+[ext_resource type="Texture2D" uid="uid://c0j8bjaqllrky" path="res://resources/Player/Resources/full.png" id="6_dogcf"]
+[ext_resource type="Texture2D" uid="uid://hfbedeyofu88" path="res://resources/Player/Resources/em.png" id="7_yao2o"]
+[ext_resource type="PackedScene" uid="uid://b0qs0vrcbtijh" path="res://resources/Mobs/Slime.tscn" id="8_yao2o"]
+[ext_resource type="PackedScene" uid="uid://btlq5021tagb3" path="res://resources/Rooms/RoomTemplates/NavigationRoom.tscn" id="9_ct827"]
+[ext_resource type="PackedScene" uid="uid://cvsingnhtgosp" path="res://resources/Mobs/Bee.tscn" id="10_vn1gh"]
+[ext_resource type="PackedScene" uid="uid://bf203u1uxf4yg" path="res://resources/Misc/BeeBullet.tscn" id="11_7xf6m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8s83"]
+resource_local_to_scene = true
+size = Vector2(544, 309)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcq4b"]
+resource_local_to_scene = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dogcf"]
+resource_local_to_scene = true
+size = Vector2(544, 309)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yao2o"]
+resource_local_to_scene = true
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7xf6m"]
+resource_local_to_scene = true
+vertices = PackedVector2Array(171.63281, 35.40625, 81.11719, -103.99219, 226.65625, -112.328125, 219.07813, -48.320313, 205.60938, 35.40625, 171.63281, 70.546875, 199.96094, 70.546875, 192.54688, 116.53125, 51.132813, 108.99219, -115.953125, 113.5625, -230.82813, 116.71094, -228.64844, -20.273438, -115.953125, 35.40625, -95.953125, -20.273438, 55.40625, 35.40625, -80.8125, 112.59375, -80.8125, 70.546875, 55.40625, 70.546875, -95.953125, -55.40625, -228.09375, -55.40625, -227.15625, -113.71094, -94.28125, -110, -94.27344, -110)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(12, 11, 13, 14), PackedInt32Array(8, 15, 16, 17), PackedInt32Array(5, 8, 17, 0), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(0, 17, 14, 1), PackedInt32Array(18, 21, 22, 1, 14, 13)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-237, -124, -94, -120, 81, -114, 238, -123, 229, -47, 201, 127, 51, 119, -241, 127)])
+parsed_collision_mask = 4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7doox"]
+resource_local_to_scene = true
+size = Vector2(544, 309)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fx88"]
+resource_local_to_scene = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xf6m"]
+resource_local_to_scene = true
+size = Vector2(26, 26)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5fx88"]
+resource_local_to_scene = true
+radius = 9.0
+height = 25.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xig5u"]
+resource_local_to_scene = true
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dogcf"]
+resource_local_to_scene = true
+radius = 6.0
+height = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ct827"]
+resource_local_to_scene = true
+size = Vector2(20, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vn1gh"]
+resource_local_to_scene = true
+size = Vector2(21, 21)
+
+[node name="World" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
+
+[node name="BigRoom" parent="." instance=ExtResource("1_2k1ph")]
+
+[node name="Background" parent="BigRoom/Room" index="0"]
+scale = Vector2(0.4, 0.34)
+texture = ExtResource("2_kdwvv")
+
+[node name="TileMapLayer" parent="BigRoom/Room" index="1"]
+tile_map_data = PackedByteArray("AAAIAAEAAgABAAMAAAD3//v/AgACAAMAAAAJAAEAAgABAAMAAAD2//v/AgABAAMAAADu//j/AgACAAEAAADu//n/AgACAAEAAADu//r/AgACAAEAAADu//v/AgABAAEAAADu//z/AgACAAEAAADu//3/AgACAAEAAADu//7/AgACAAEAAADu////AgACAAEAAADu/wAAAgACAAEAAADu/wEAAgABAAEAAADu/wIAAgACAAEAAADu/wMAAgACAAEAAADu/wQAAgACAAEAAADu/wgAAgABAAEAAADv//b/AgABAAEAAADw//b/AgABAAIAAADx//b/AgABAAIAAADy//b/AgABAAIAAADz//b/AgABAAIAAAD0//b/AgABAAIAAAD1//b/AgABAAIAAAD2//b/AgABAAIAAAD3//b/AgABAAIAAAD4//b/AgABAAIAAAD5//b/AgABAAIAAAD6//b/AgABAAIAAAD7//b/AgABAAIAAAD8//b/AgABAAIAAAD9//b/AgABAAIAAAD+//b/AgABAAIAAAD///b/AgABAAIAAAAAAPb/AgABAAIAAAABAPb/AgABAAIAAAACAPb/AgABAAIAAAADAPb/AgABAAIAAAAEAPb/AgABAAIAAAAFAPb/AgABAAIAAAAGAPb/AgABAAIAAAAHAPb/AgABAAIAAAAIAPb/AgABAAIAAAAJAPb/AgABAAIAAAAKAPb/AgABAAIAAAALAPb/AgABAAIAAAAMAPb/AgABAAIAAAANAPb/AgABAAIAAAAOAPb/AgABAAIAAAAPAPb/AgABAAIAAAAQAPb/AgABAAEAAAARAPf/AgABAAEAAAARAPj/AgAAAAEAAAARAPn/AgAAAAEAAAARAPr/AgAAAAEAAAARAPv/AgAAAAEAAAARAPz/AgAAAAEAAAARAP3/AgAAAAEAAAARAP7/AgAAAAEAAAARAP//AgAAAAEAAAARAAAAAgAAAAEAAAARAAEAAgABAAEAAAARAAIAAgAAAAEAAAARAAMAAgAAAAEAAAARAAQAAgAAAAEAAAARAAgAAgABAAEAAADv/wkAAgABAAEAAADw/wkAAgABAAEAAADx/wkAAgABAAEAAADy/wkAAgABAAEAAADz/wkAAgABAAAAAAD0/wkAAgABAAAAAAD1/wkAAgABAAAAAAD2/wkAAgABAAAAAAD3/wkAAgABAAAAAAD4/wkAAgABAAAAAAD5/wkAAgABAAAAAAD6/wkAAgABAAAAAAD7/wkAAgABAAAAAAD8/wkAAgABAAAAAAD9/wkAAgABAAAAAAD+/wkAAgABAAAAAAD//wkAAgABAAAAAAAAAAkAAgABAAAAAAABAAkAAgABAAAAAAACAAkAAgABAAAAAAADAAkAAgABAAAAAAAEAAkAAgABAAAAAAAFAAkAAgABAAAAAAAGAAkAAgABAAAAAAAHAAkAAgABAAAAAAAIAAkAAgABAAAAAAAJAAkAAgABAAAAAAAKAAkAAgABAAAAAAALAAkAAgABAAAAAAAMAAkAAgABAAAAAAANAAkAAgABAAAAAAAOAAkAAgABAAAAAAAPAAkAAgABAAAAAAAQAAkAAgABAAEAAADt/woAAgABAAEAAADu/woAAgABAAEAAADv/woAAgABAAEAAADw/woAAgABAAEAAADx/woAAgABAAEAAADy/woAAgABAAEAAADz/woAAgABAAEAAAD0/woAAgABAAEAAAD1/woAAgABAAEAAAD2/woAAgABAAEAAAD3/woAAgABAAEAAAD4/woAAgABAAEAAAD5/woAAgABAAEAAAD6/woAAgABAAEAAAD7/woAAgABAAEAAAD8/woAAgABAAEAAAD9/woAAgABAAEAAAD+/woAAgABAAEAAAD//woAAgABAAEAAAAAAAoAAgABAAEAAAABAAoAAgABAAEAAAACAAoAAgABAAEAAAADAAoAAgABAAEAAAAEAAoAAgABAAEAAAAFAAoAAgABAAEAAAAGAAoAAgABAAEAAAAHAAoAAgABAAEAAAAIAAoAAgABAAEAAAAJAAoAAgABAAEAAAAKAAoAAgABAAEAAAALAAoAAgABAAEAAAAMAAoAAgABAAEAAAANAAoAAgABAAEAAAAOAAoAAgABAAEAAAAPAAoAAgABAAEAAAAQAAoAAgABAAEAAAARAAoAAgABAAEAAAASAAoAAgABAAEAAAASAAkAAgABAAEAAAASAAgAAgABAAEAAAASAAQAAgABAAEAAAASAAMAAgABAAEAAAASAAIAAgABAAEAAAASAAEAAgABAAEAAAASAAAAAgABAAEAAAASAP//AgABAAEAAAASAP7/AgABAAEAAAASAP3/AgABAAEAAAASAPz/AgABAAEAAAASAPv/AgABAAEAAAASAPr/AgABAAEAAAASAPn/AgABAAEAAAASAPj/AgABAAEAAAASAPf/AgABAAEAAAASAPb/AgABAAEAAAASAPX/AgABAAEAAAARAPX/AgABAAEAAAAQAPX/AgABAAEAAAAPAPX/AgABAAEAAAAOAPX/AgABAAEAAAANAPX/AgABAAEAAAAMAPX/AgABAAEAAAALAPX/AgABAAEAAAAKAPX/AgABAAEAAAAJAPX/AgABAAEAAAAIAPX/AgABAAEAAAAHAPX/AgABAAEAAAAGAPX/AgABAAEAAAAFAPX/AgABAAEAAAAEAPX/AgABAAEAAAADAPX/AgABAAEAAAACAPX/AgABAAEAAAABAPX/AgABAAEAAAAAAPX/AgABAAEAAAD///X/AgABAAEAAAD+//X/AgABAAEAAAD9//X/AgABAAEAAAD8//X/AgABAAEAAAD7//X/AgABAAEAAAD6//X/AgABAAEAAAD5//X/AgABAAEAAAD4//X/AgABAAEAAAD3//X/AgABAAEAAAD2//X/AgABAAEAAAD1//X/AgABAAEAAAD0//X/AgABAAEAAADz//X/AgABAAEAAADy//X/AgABAAEAAADx//X/AgABAAEAAADw//X/AgABAAEAAADv//X/AgABAAEAAADu//X/AgABAAEAAADt//X/AgABAAEAAADt//b/AgABAAEAAADt//f/AgABAAEAAADt//j/AgABAAEAAADt//n/AgABAAEAAADt//r/AgABAAEAAADt//v/AgABAAEAAADt//z/AgABAAEAAADt//3/AgABAAEAAADt//7/AgABAAEAAADt////AgABAAEAAADt/wAAAgABAAEAAADt/wEAAgABAAEAAADt/wIAAgABAAEAAADt/wMAAgABAAEAAADt/wQAAgABAAEAAADt/wgAAgABAAEAAADt/wkAAgABAAEAAADu//f/AgABAAEAAADv//f/AgACAAIAAADu//b/AgABAAEAAAAQAPf/AgAAAAIAAAARAPb/AgABAAEAAAARAAkAAgABAAEAAAAQAAgAAgAAAAAAAADv/wgAAgABAAEAAADu/wkAAgABAAEAAADs/wUAAgABAAEAAADs/wYAAgABAAEAAADs/wcAAgABAAEAAADs/wgAAgABAAEAAAATAAUAAgABAAEAAAATAAYAAgABAAEAAAATAAcAAgABAAEAAAATAAgAAgABAAEAAAD8/wEAAgABAAMAAAD9/wEAAgABAAMAAAD+/wEAAgABAAMAAAD//wEAAgABAAMAAAAAAAEAAgABAAMAAAABAAEAAgABAAMAAAACAAEAAgABAAMAAAADAAEAAgABAAMAAAAEAAEAAgABAAMAAAAFAAEAAgABAAMAAAAGAAEAAgABAAMAAAAHAAEAAgABAAMAAAD7/wEAAgABAAMAAAD6/wEAAgABAAMAAAD5/wEAAgABAAMAAAD4/wEAAgAAAAMAAADv/wEAAgABAAMAAADw/wEAAgABAAMAAADx/wEAAgACAAMAAAAKAAEAAgABAAMAAAALAAEAAgABAAMAAAAMAAEAAgABAAMAAAANAAEAAgABAAMAAAAOAAEAAgABAAMAAAAPAAEAAgABAAMAAAAQAAEAAgABAAMAAADv//v/AgABAAMAAADw//v/AgABAAMAAADx//v/AgABAAMAAADy//v/AgABAAMAAADz//v/AgABAAMAAAD0//v/AgABAAMAAAD1//v/AgABAAMAAADy/wgAAgACAAEAAADy/wcAAgACAAEAAADw/wcAAgABAAEAAADx/wcAAgABAAEAAADv/wcAAgABAAEAAADu/wcAAgABAAEAAADt/wcAAgABAAEAAADt/wYAAgABAAEAAADt/wUAAgABAAEAAADu/wUAAgACAAEAAADu/wYAAgABAAEAAADy/wYAAgACAAAAAADx/wYAAgABAAAAAADw/wYAAgABAAAAAADv/wYAAgABAAAAAADx/wgAAgABAAEAAADw/wgAAgABAAEAAAA=")
+
+[node name="CameraBounds" parent="BigRoom/Room" index="2"]
+visible = false
+
+[node name="CollisionShape2D" parent="BigRoom/Room/CameraBounds" index="0"]
+shape = SubResource("RectangleShape2D_y8s83")
+
+[node name="Exit" parent="BigRoom/Room/Doors" index="0" node_paths=PackedStringArray("target_room", "target_door", "mobs_in_room")]
+target_room = NodePath("../../../../BigRoom2")
+target_door = NodePath("../../../../BigRoom2/Room/Doors/Enterance")
+mobs_in_room = [NodePath("../../../../Goblin/GroundEnemy"), NodePath("../../../../Goblin2/GroundEnemy")]
+
+[node name="CollisionShape2D" parent="BigRoom/Room/Doors/Exit" index="0"]
+shape = SubResource("RectangleShape2D_tcq4b")
+
+[node name="Enterance" parent="BigRoom/Room/Doors" index="1"]
+position = Vector2(-223, -99)
+
+[node name="CollisionShape2D" parent="BigRoom/Room/Doors/Enterance" index="0"]
+shape = SubResource("RectangleShape2D_tcq4b")
+
+[node name="BigRoom2" parent="." instance=ExtResource("1_2k1ph")]
+position = Vector2(733, 0)
+
+[node name="Background" parent="BigRoom2/Room" index="0"]
+scale = Vector2(0.4, 0.34)
+texture = ExtResource("2_kdwvv")
+
+[node name="TileMapLayer" parent="BigRoom2/Room" index="1"]
+tile_map_data = PackedByteArray("AAAIAP7/AgACAAMAAAD3/wMAAgAAAAMAAAD4/wMAAgABAAMAAADu//j/AgACAAEAAADu//n/AgACAAEAAADu//r/AgACAAEAAADu//v/AgACAAEAAADu//z/AgACAAEAAADu//3/AgACAAEAAADu//7/AgACAAEAAADu////AgACAAEAAADu/wAAAgACAAEAAADu/wEAAgACAAEAAADu/wIAAgACAAEAAADu/wMAAgACAAEAAADu/wQAAgACAAEAAADu/wgAAgABAAEAAADv//b/AgABAAEAAADw//b/AgABAAIAAADx//b/AgABAAIAAADy//b/AgABAAIAAADz//b/AgABAAIAAAD0//b/AgABAAIAAAD1//b/AgABAAIAAAD2//b/AgABAAIAAAD3//b/AgABAAIAAAD4//b/AgABAAIAAAD5//b/AgABAAIAAAD6//b/AgABAAIAAAD7//b/AgABAAIAAAD8//b/AgABAAIAAAD9//b/AgABAAIAAAD+//b/AgABAAIAAAD///b/AgABAAIAAAAAAPb/AgABAAIAAAABAPb/AgABAAIAAAACAPb/AgABAAIAAAADAPb/AgABAAIAAAAEAPb/AgABAAIAAAAFAPb/AgABAAIAAAAGAPb/AgABAAIAAAAHAPb/AgABAAIAAAAIAPb/AgABAAIAAAAJAPb/AgABAAIAAAAKAPb/AgABAAIAAAALAPb/AgABAAIAAAAMAPb/AgABAAIAAAANAPb/AgABAAIAAAAOAPb/AgABAAIAAAAPAPb/AgABAAIAAAAQAPb/AgABAAEAAAARAPf/AgABAAEAAAARAPj/AgAAAAEAAAARAPn/AgAAAAEAAAARAPr/AgAAAAEAAAARAPv/AgAAAAEAAAARAPz/AgAAAAEAAAARAP3/AgAAAAEAAAARAP7/AgAAAAEAAAARAP//AgAAAAEAAAARAAAAAgAAAAEAAAARAAEAAgAAAAEAAAARAAIAAgAAAAEAAAARAAMAAgAAAAEAAAARAAQAAgAAAAEAAAARAAgAAgABAAEAAADv/wkAAgABAAEAAADw/wkAAgABAAAAAADx/wkAAgABAAAAAADy/wkAAgABAAAAAADz/wkAAgABAAAAAAD0/wkAAgABAAAAAAD1/wkAAgABAAAAAAD2/wkAAgABAAAAAAD3/wkAAgABAAAAAAD4/wkAAgABAAAAAAD5/wkAAgABAAAAAAD6/wkAAgABAAAAAAD7/wkAAgABAAAAAAD8/wkAAgABAAAAAAD9/wkAAgABAAAAAAD+/wkAAgABAAAAAAD//wkAAgABAAAAAAAAAAkAAgABAAAAAAABAAkAAgABAAAAAAACAAkAAgABAAAAAAADAAkAAgABAAAAAAAEAAkAAgABAAAAAAAFAAkAAgABAAAAAAAGAAkAAgABAAAAAAAHAAkAAgABAAAAAAAIAAkAAgABAAAAAAAJAAkAAgABAAAAAAAKAAkAAgABAAAAAAALAAkAAgABAAAAAAAMAAkAAgABAAAAAAANAAkAAgABAAAAAAAOAAkAAgABAAAAAAAPAAkAAgABAAAAAAAQAAkAAgABAAEAAADt/woAAgABAAEAAADu/woAAgABAAEAAADv/woAAgABAAEAAADw/woAAgABAAEAAADx/woAAgABAAEAAADy/woAAgABAAEAAADz/woAAgABAAEAAAD0/woAAgABAAEAAAD1/woAAgABAAEAAAD2/woAAgABAAEAAAD3/woAAgABAAEAAAD4/woAAgABAAEAAAD5/woAAgABAAEAAAD6/woAAgABAAEAAAD7/woAAgABAAEAAAD8/woAAgABAAEAAAD9/woAAgABAAEAAAD+/woAAgABAAEAAAD//woAAgABAAEAAAAAAAoAAgABAAEAAAABAAoAAgABAAEAAAACAAoAAgABAAEAAAADAAoAAgABAAEAAAAEAAoAAgABAAEAAAAFAAoAAgABAAEAAAAGAAoAAgABAAEAAAAHAAoAAgABAAEAAAAIAAoAAgABAAEAAAAJAAoAAgABAAEAAAAKAAoAAgABAAEAAAALAAoAAgABAAEAAAAMAAoAAgABAAEAAAANAAoAAgABAAEAAAAOAAoAAgABAAEAAAAPAAoAAgABAAEAAAAQAAoAAgABAAEAAAARAAoAAgABAAEAAAASAAoAAgABAAEAAAASAAkAAgABAAEAAAASAAgAAgABAAEAAAASAAQAAgABAAEAAAASAAMAAgABAAEAAAASAAIAAgABAAEAAAASAAEAAgABAAEAAAASAAAAAgABAAEAAAASAP//AgABAAEAAAASAP7/AgABAAEAAAASAP3/AgABAAEAAAASAPz/AgABAAEAAAASAPv/AgABAAEAAAASAPr/AgABAAEAAAASAPn/AgABAAEAAAASAPj/AgABAAEAAAASAPf/AgABAAEAAAASAPb/AgABAAEAAAASAPX/AgABAAEAAAARAPX/AgABAAEAAAAQAPX/AgABAAEAAAAPAPX/AgABAAEAAAAOAPX/AgABAAEAAAANAPX/AgABAAEAAAAMAPX/AgABAAEAAAALAPX/AgABAAEAAAAKAPX/AgABAAEAAAAJAPX/AgABAAEAAAAIAPX/AgABAAEAAAAHAPX/AgABAAEAAAAGAPX/AgABAAEAAAAFAPX/AgABAAEAAAAEAPX/AgABAAEAAAADAPX/AgABAAEAAAACAPX/AgABAAEAAAABAPX/AgABAAEAAAAAAPX/AgABAAEAAAD///X/AgABAAEAAAD+//X/AgABAAEAAAD9//X/AgABAAEAAAD8//X/AgABAAEAAAD7//X/AgABAAEAAAD6//X/AgABAAEAAAD5//X/AgABAAEAAAD4//X/AgABAAEAAAD3//X/AgABAAEAAAD2//X/AgABAAEAAAD1//X/AgABAAEAAAD0//X/AgABAAEAAADz//X/AgABAAEAAADy//X/AgABAAEAAADx//X/AgABAAEAAADw//X/AgABAAEAAADv//X/AgABAAEAAADu//X/AgABAAEAAADt//X/AgABAAEAAADt//b/AgABAAEAAADt//f/AgABAAEAAADt//j/AgABAAEAAADt//n/AgABAAEAAADt//r/AgABAAEAAADt//v/AgABAAEAAADt//z/AgABAAEAAADt//3/AgABAAEAAADt//7/AgABAAEAAADt////AgABAAEAAADt/wAAAgABAAEAAADt/wEAAgABAAEAAADt/wIAAgABAAEAAADt/wMAAgABAAEAAADt/wQAAgABAAEAAADt/wgAAgABAAEAAADt/wkAAgABAAEAAADu//f/AgABAAEAAADv//f/AgACAAIAAADu//b/AgABAAEAAAAQAPf/AgAAAAIAAAARAPb/AgABAAEAAAARAAkAAgABAAEAAAAQAAgAAgAAAAAAAADv/wgAAgACAAAAAADu/wkAAgABAAEAAADs/wUAAgABAAEAAADs/wYAAgABAAEAAADs/wcAAgABAAEAAADs/wgAAgABAAEAAAATAAUAAgABAAEAAAATAAYAAgABAAEAAAATAAcAAgABAAEAAAATAAgAAgABAAEAAAAAAP7/AgAAAAMAAAABAP7/AgABAAMAAAACAP7/AgABAAMAAAADAP7/AgABAAMAAAAEAP7/AgABAAMAAAAFAP7/AgABAAMAAAAGAP7/AgABAAMAAAAHAP7/AgABAAMAAAD5/wMAAgABAAMAAAD6/wMAAgABAAMAAAD7/wMAAgABAAMAAAD8/wMAAgABAAMAAAD9/wMAAgABAAMAAAD+/wMAAgABAAMAAAD//wMAAgACAAMAAAA=")
+
+[node name="CameraBounds" parent="BigRoom2/Room" index="2"]
+visible = false
+
+[node name="CollisionShape2D" parent="BigRoom2/Room/CameraBounds" index="0"]
+shape = SubResource("RectangleShape2D_dogcf")
+
+[node name="Exit" parent="BigRoom2/Room/Doors" index="0" node_paths=PackedStringArray("target_room", "target_door", "mobs_in_room")]
+target_room = NodePath("../../../../NavigationRoom/Room")
+target_door = NodePath("../../../../NavigationRoom/Room/Doors/Enterance")
+mobs_in_room = [NodePath("../../../../Slime/GroundEnemy"), NodePath("../../../../Slime2/GroundEnemy")]
+
+[node name="CollisionShape2D" parent="BigRoom2/Room/Doors/Exit" index="0"]
+shape = SubResource("RectangleShape2D_yao2o")
+
+[node name="CollisionShape2D" parent="BigRoom2/Room/Doors/Enterance" index="0"]
+shape = SubResource("RectangleShape2D_yao2o")
+
+[node name="NavigationRoom" parent="." instance=ExtResource("9_ct827")]
+position = Vector2(1476, -8)
+navigation_polygon = SubResource("NavigationPolygon_7xf6m")
+
+[node name="Background" parent="NavigationRoom/Room" index="0"]
+scale = Vector2(0.34, 0.34)
+texture = ExtResource("2_kdwvv")
+
+[node name="CollisionShape2D" parent="NavigationRoom/Room/CameraBounds" index="0"]
+shape = SubResource("RectangleShape2D_7doox")
+
+[node name="Exit" parent="NavigationRoom/Room/Doors" index="0" node_paths=PackedStringArray("mobs_in_room")]
+mobs_in_room = [NodePath("../../../Bee/AirEnemy")]
+
+[node name="CollisionShape2D" parent="NavigationRoom/Room/Doors/Exit" index="0"]
+shape = SubResource("RectangleShape2D_5fx88")
+
+[node name="CollisionShape2D" parent="NavigationRoom/Room/Doors/Enterance" index="0"]
+shape = SubResource("RectangleShape2D_5fx88")
+
+[node name="Bee" parent="NavigationRoom" node_paths=PackedStringArray("player1", "targets") instance=ExtResource("10_vn1gh")]
+position = Vector2(-45, 95)
+projectile_scene = ExtResource("11_7xf6m")
+player1 = NodePath("../../Yamamoto/Player")
+targets = [NodePath("Target"), NodePath("Target2"), NodePath("Target3"), NodePath("Target4"), NodePath("Target5")]
+
+[node name="AirEnemy" parent="NavigationRoom/Bee" index="0"]
+speed = 200.0
+
+[node name="CollisionShape2D" parent="NavigationRoom/Bee/AirEnemy/EnemyHitbox" index="0"]
+shape = SubResource("RectangleShape2D_7xf6m")
+
+[node name="CollisionShape2D" parent="NavigationRoom/Bee/AirEnemy" index="1"]
+shape = SubResource("CapsuleShape2D_5fx88")
+
+[node name="Target2" type="Marker2D" parent="NavigationRoom/Bee"]
+position = Vector2(156, -66)
+
+[node name="Target3" type="Marker2D" parent="NavigationRoom/Bee"]
+position = Vector2(-137, -182)
+
+[node name="Target4" type="Marker2D" parent="NavigationRoom/Bee"]
+position = Vector2(228, -177)
+
+[node name="Target5" type="Marker2D" parent="NavigationRoom/Bee"]
+position = Vector2(-145, -7)
+
+[node name="Yamamoto" parent="." instance=ExtResource("3_y8s83")]
+position = Vector2(-187, -108)
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" parent="Yamamoto/Player" index="0"]
+shape = SubResource("CapsuleShape2D_xig5u")
+
+[node name="Goblin" parent="." instance=ExtResource("3_lo6tm")]
+position = Vector2(-147, 111)
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" parent="Goblin/GroundEnemy" index="0"]
+shape = SubResource("CapsuleShape2D_dogcf")
+
+[node name="CollisionShape2D" parent="Goblin/GroundEnemy/EnemyHitbox" index="0"]
+shape = SubResource("RectangleShape2D_ct827")
+
+[node name="Goblin2" parent="." instance=ExtResource("3_lo6tm")]
+position = Vector2(51, -13)
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" parent="Goblin2/GroundEnemy" index="0"]
+shape = SubResource("CapsuleShape2D_dogcf")
+
+[node name="CollisionShape2D" parent="Goblin2/GroundEnemy/EnemyHitbox" index="0"]
+shape = SubResource("RectangleShape2D_ct827")
+
+[node name="Slime" parent="." instance=ExtResource("8_yao2o")]
+position = Vector2(827, -43)
+
+[node name="CollisionShape2D" parent="Slime/GroundEnemy/EnemyHitbox" index="0"]
+shape = SubResource("RectangleShape2D_vn1gh")
+
+[node name="Slime2" parent="." instance=ExtResource("8_yao2o")]
+position = Vector2(611, 34)
+
+[node name="CollisionShape2D" parent="Slime2/GroundEnemy/EnemyHitbox" index="0"]
+shape = SubResource("RectangleShape2D_vn1gh")
+
+[node name="Interface" parent="." instance=ExtResource("5_xig5u")]
+
+[node name="HealthUI" parent="Interface" index="0" node_paths=PackedStringArray("player1", "player2")]
+player1 = NodePath("../../Yamamoto/Player")
+player2 = NodePath("../../Yamamoto/Player")
+heart_full = ExtResource("6_dogcf")
+heart_empty = ExtResource("7_yao2o")
+
+[editable path="BigRoom"]
+[editable path="BigRoom/Room"]
+[editable path="BigRoom2"]
+[editable path="BigRoom2/Room"]
+[editable path="NavigationRoom"]
+[editable path="NavigationRoom/Room"]
+[editable path="NavigationRoom/Bee"]
+[editable path="NavigationRoom/Bee/AirEnemy"]
+[editable path="NavigationRoom/Bee/AirEnemy/EnemyHitbox"]
+[editable path="Yamamoto"]
+[editable path="Yamamoto/Player"]
+[editable path="Yamamoto/Player/UI/Health"]
+[editable path="Goblin"]
+[editable path="Goblin/GroundEnemy"]
+[editable path="Goblin/GroundEnemy/EnemyHitbox"]
+[editable path="Goblin2"]
+[editable path="Goblin2/GroundEnemy"]
+[editable path="Goblin2/GroundEnemy/EnemyHitbox"]
+[editable path="Slime"]
+[editable path="Slime/GroundEnemy"]
+[editable path="Slime/GroundEnemy/EnemyHitbox"]
+[editable path="Slime2"]
+[editable path="Slime2/GroundEnemy"]
+[editable path="Slime2/GroundEnemy/EnemyHitbox"]
+[editable path="Interface"]

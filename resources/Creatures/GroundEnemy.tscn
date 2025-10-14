@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://cf3rxyo33oibm"]
+
+[ext_resource type="Script" uid="uid://cby44fv1jn6fv" path="res://resources/Creatures/GroundEnemy.gd" id="1_auwv7"]
+[ext_resource type="PackedScene" uid="uid://o2bkb7dqtrfg" path="res://resources/Misc/Death.tscn" id="2_rlcrx"]
+[ext_resource type="PackedScene" uid="uid://c5pcd6gvrjr4y" path="res://resources/Misc/EnemyHitbox.tscn" id="2_x1a12"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x1a12"]
+resource_local_to_scene = true
+radius = 9.0
+height = 18.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1a12"]
+resource_local_to_scene = true
+
+[node name="GroundEnemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("1_auwv7")
+invul_duration = 0.2
+death_scene = ExtResource("2_rlcrx")
+flippable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_x1a12")
+
+[node name="EnemyHitbox" parent="." instance=ExtResource("2_x1a12")]
+
+[node name="CollisionShape2D" parent="EnemyHitbox" index="0"]
+shape = SubResource("RectangleShape2D_x1a12")
+
+[node name="FloorRayCast" type="RayCast2D" parent="."]
+collision_mask = 4
+hit_from_inside = true
+
+[node name="WallRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(-50, 0)
+collision_mask = 7
+
+[node name="VisionRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(-2000, 0)
+collision_mask = 5
+
+[editable path="EnemyHitbox"]

@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://4flu6k4xyueq"]
+
+[ext_resource type="PackedScene" uid="uid://cf3rxyo33oibm" path="res://resources/Creatures/GroundEnemy.tscn" id="1_c1e78"]
+[ext_resource type="Script" uid="uid://deqi4djcir8ig" path="res://resources/Mobs/GoblinAI.gd" id="1_elqab"]
+[ext_resource type="Texture2D" uid="uid://p7kbp04md55i" path="res://assets/sprites/enemies/goblin_attack.png" id="2_elqab"]
+[ext_resource type="Texture2D" uid="uid://dpsu06l2xx1hh" path="res://assets/sprites/enemies/goblin1.png" id="3_2uj0f"]
+[ext_resource type="Texture2D" uid="uid://c1i77yfasmjho" path="res://assets/sprites/enemies/goblin2.png" id="4_sidwx"]
+[ext_resource type="Script" uid="uid://r40lksnkn6fu" path="res://resources/Creatures/CreatureAnimatedSprite.gd" id="5_2uj0f"]
+[ext_resource type="PackedScene" uid="uid://o2bkb7dqtrfg" path="res://resources/Misc/Death.tscn" id="7_sidwx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ec1h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_elqab")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2uj0f")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2uj0f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sidwx")
+}],
+"loop": true,
+"name": &"Move",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_elqab"]
+resource_local_to_scene = true
+radius = 6.0
+height = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2uj0f"]
+resource_local_to_scene = true
+size = Vector2(20, 21)
+
+[node name="Goblin" type="Node2D"]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_elqab")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("creature")]
+scale = Vector2(0.02, 0.02)
+sprite_frames = SubResource("SpriteFrames_3ec1h")
+animation = &"Idle"
+script = ExtResource("5_2uj0f")
+creature = NodePath("../GroundEnemy")
+
+[node name="GroundEnemy" parent="." instance=ExtResource("1_c1e78")]
+death_scene = ExtResource("7_sidwx")
+flippable = true
+
+[node name="CollisionShape2D" parent="GroundEnemy" index="0"]
+shape = SubResource("CapsuleShape2D_elqab")
+
+[node name="CollisionShape2D" parent="GroundEnemy/EnemyHitbox" index="0"]
+position = Vector2(-1.0000002, 0)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_2uj0f")
+
+[node name="FloorRayCast" parent="GroundEnemy" index="2"]
+position = Vector2(-13, 0)
+target_position = Vector2(0, 40)
+
+[node name="WallRayCast" parent="GroundEnemy" index="3"]
+target_position = Vector2(-15, 0)
+hit_from_inside = false
+
+[editable path="GroundEnemy"]
+[editable path="GroundEnemy/EnemyHitbox"]

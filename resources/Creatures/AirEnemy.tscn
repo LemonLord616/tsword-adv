@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cscjkdmdd3lvb"]
+
+[ext_resource type="PackedScene" uid="uid://c5pcd6gvrjr4y" path="res://resources/Misc/EnemyHitbox.tscn" id="1_gw6um"]
+[ext_resource type="Script" uid="uid://cmveki2hxvb85" path="res://resources/Creatures/AirEnemy.gd" id="1_sk88r"]
+[ext_resource type="PackedScene" uid="uid://o2bkb7dqtrfg" path="res://resources/Misc/Death.tscn" id="2_wbdlh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sk88r"]
+resource_local_to_scene = true
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wbdlh"]
+resource_local_to_scene = true
+
+[node name="AirEnemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 6
+motion_mode = 1
+script = ExtResource("1_sk88r")
+invul_duration = 0.2
+knockback_resist = 0.0
+death_scene = ExtResource("2_wbdlh")
+flippable = true
+
+[node name="EnemyHitbox" parent="." instance=ExtResource("1_gw6um")]
+
+[node name="CollisionShape2D" parent="EnemyHitbox" index="0"]
+shape = SubResource("RectangleShape2D_sk88r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wbdlh")
+
+[editable path="EnemyHitbox"]

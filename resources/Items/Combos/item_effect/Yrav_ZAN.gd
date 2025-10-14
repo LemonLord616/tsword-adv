@@ -15,7 +15,7 @@ func remove(player):
 		timer.queue_free()
 
 func _spawn_enemy(player):
-	var enemy = preload("res://resources/enemies/mobs/ODbee.tscn").instantiate()
+	var enemy = preload("res://resources/old_enemies/mobs/ODbee.tscn").instantiate()
 	enemy.target = player
 	var root = player.get_tree().current_scene
 	root.add_child(enemy)

@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqlmlwqdx6trj"]
+
+[ext_resource type="Script" uid="uid://dftkr7j5b5ujq" path="res://resources/Creatures/Player.gd" id="1_cb1hs"]
+[ext_resource type="PackedScene" uid="uid://cjowrpqsri06r" path="res://resources/Misc/SwordAttack.tscn" id="2_caogb"]
+[ext_resource type="PackedScene" uid="uid://o2bkb7dqtrfg" path="res://resources/Misc/Death.tscn" id="3_caogb"]
+[ext_resource type="PackedScene" uid="uid://ofgshyjrkmw4" path="res://resources/Player/Health.tscn" id="3_ugqvj"]
+[ext_resource type="PackedScene" uid="uid://6pandr8ui1st" path="res://resources/Player/InventoryMenu.tscn" id="4_4uwpo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d5a8w"]
+resource_local_to_scene = true
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 5
+script = ExtResource("1_cb1hs")
+hitbox_scene = ExtResource("2_caogb")
+max_hp = 6
+death_scene = ExtResource("3_caogb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_d5a8w")
+
+[node name="UI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Health" parent="UI" instance=ExtResource("3_ugqvj")]
+visible = false
+
+[node name="HBoxContainer" parent="UI/Health" index="0" node_paths=PackedStringArray("player")]
+player = NodePath("../../..")
+
+[node name="InventoryMenu" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("4_4uwpo")]
+visible = false
+player = NodePath("../..")
+
+[editable path="UI/Health"]

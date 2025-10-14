@@ -1,0 +1,93 @@
+[gd_scene load_steps=13 format=3 uid="uid://b0qs0vrcbtijh"]
+
+[ext_resource type="Script" uid="uid://dloirxtvyvapj" path="res://resources/Mobs/SlimeAI.gd" id="1_3xmfk"]
+[ext_resource type="PackedScene" uid="uid://cf3rxyo33oibm" path="res://resources/Creatures/GroundEnemy.tscn" id="2_e85vg"]
+[ext_resource type="Script" uid="uid://cfy56r8mmc7j6" path="res://resources/Mobs/SlimeScanner.gd" id="3_e85vg"]
+[ext_resource type="Texture2D" uid="uid://bhdm5tfm3ruwb" path="res://assets/sprites/enemies/slime_jump2.png" id="3_m6pcp"]
+[ext_resource type="Texture2D" uid="uid://dsh8r3kp3roam" path="res://assets/sprites/enemies/slime_jump3.png" id="4_fjskt"]
+[ext_resource type="Texture2D" uid="uid://cdau7qriondh6" path="res://assets/sprites/enemies/slime_idle1.png" id="5_wq75e"]
+[ext_resource type="Texture2D" uid="uid://cjbo6wqx5q0u8" path="res://assets/sprites/enemies/slime_idle2.png" id="6_akmyp"]
+[ext_resource type="Texture2D" uid="uid://bpua3vnrmowns" path="res://assets/sprites/enemies/slime_jump1.png" id="7_k6jfm"]
+[ext_resource type="Script" uid="uid://r40lksnkn6fu" path="res://resources/Creatures/CreatureAnimatedSprite.gd" id="8_fjskt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m6pcp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6pcp"]
+resource_local_to_scene = true
+size = Vector2(21, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jb5li"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_m6pcp")
+}],
+"loop": true,
+"name": &"Ascending",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fjskt")
+}],
+"loop": true,
+"name": &"Descending",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_wq75e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_akmyp")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_k6jfm")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}]
+
+[node name="Slime" type="Node2D"]
+script = ExtResource("1_3xmfk")
+
+[node name="GroundEnemy" parent="." instance=ExtResource("2_e85vg")]
+
+[node name="CollisionShape2D" parent="GroundEnemy" index="0"]
+shape = SubResource("CircleShape2D_m6pcp")
+
+[node name="CollisionShape2D" parent="GroundEnemy/EnemyHitbox" index="0"]
+shape = SubResource("RectangleShape2D_m6pcp")
+
+[node name="FloorRayCast" parent="GroundEnemy" index="2"]
+position = Vector2(-20, -9)
+
+[node name="WallRayCast" parent="GroundEnemy" index="3"]
+target_position = Vector2(-20, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("creature")]
+scale = Vector2(0.02, 0.02)
+sprite_frames = SubResource("SpriteFrames_jb5li")
+animation = &"Jump"
+script = ExtResource("8_fjskt")
+creature = NodePath("../GroundEnemy")
+
+[node name="Scanner" type="Node2D" parent="."]
+script = ExtResource("3_e85vg")
+
+[node name="FloorRayCast" type="RayCast2D" parent="Scanner"]
+position = Vector2(-20, 0)
+collision_mask = 4
+
+[node name="WallRayCast" type="RayCast2D" parent="Scanner"]
+target_position = Vector2(-20, 0)
+collision_mask = 4
+
+[editable path="GroundEnemy"]
+[editable path="GroundEnemy/EnemyHitbox"]

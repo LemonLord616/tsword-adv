@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="Two swordmen adv"
-run/main_scene="uid://bmfv4eebd2k4x"
+run/main_scene="uid://dpkyfww3i4s8r"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://Icon.png"
+run/default_gravity=490.0
 
 [display]
 
@@ -98,6 +99,10 @@ p2_attack={
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[physics]
+
+2d/main_scene="uid://dpkyfww3i4s8r"
 
 [rendering]
 
